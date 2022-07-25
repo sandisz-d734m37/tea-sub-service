@@ -51,7 +51,9 @@
 
 The first thing I'll do from here: push to GitHub, create User Stories/project board w issues
 
-<h3> Steps: </h3>
+<hr>
+
+<h3> User table: </h3>
 
 - Create user_table branch
 - Generate User resources - `rails g resource User first_name last_name email shipping_address`
@@ -83,7 +85,9 @@ Then run: `rails g rspec:install`
 - user validation tests
 - user creation model tests
 
-<h4> On to the tea table (actually the TAPI)</h4>
+<hr>
+
+<h3> Tea table (actually the TAPI):</h3>
 
 Firstly, I decided to use the [TAPI](https://github.com/victoria-lo/TAPI) rather than create a table.
 This is for ease of use on my end, and to present myself with a bit of a challenge.
@@ -104,3 +108,20 @@ I wrote a test then made the TeaService method `get_tea_by_title(title)` to call
 This worked.
 
 Now I'm writing a test to make sure the TeaFacade `get_tea_by_title(title)` returns a single Tea PORO using the response from `TeaService.get_tea_by_title(title)`
+
+<hr>
+
+<h3>Subscription table:</h3>
+
+Generate Subscription resources using `rails g resource Subscription title price:float status:integer frequency:integer tea_name user:references`
+
+Some notes on the step above:
+- `status:integer` this is an integer because the status will be enumerated, taking in `0` or `1` and ultimately returning `inactive` or `active`
+  - `0 => inactive`
+  - `1 => active`<br><br>
+- `frequency:integer` this will also be enumerated, taking in `0`, `1`, or `2` and ultimately returning `weekly`, `biweekly`, or `monthly`
+  - `0 => weekly`
+  - `1 => biweekly`
+  - `2 => monthly`<br><br>
+- `tea_name` will tap the TAPI to return the tea associated with the subscription<br><br>
+- `user:references` sets the user as a foreign key<br><br>

@@ -72,3 +72,10 @@ users GET    /users(.:format)                     users#index
 ```
 
 Now, i'll initialize RSpec and write a test to create a user and return it via the API
+
+Add the following gems:
+`rspec-rails, pry, capybara, launchy, simplecov, shoulda-matchers, orderly, figaro, factory_bot, faker, webmock, VCR, Faraday`
+
+Bundle install (of course)
+
+Then run: `rails g rspec:install`

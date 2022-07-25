@@ -94,3 +94,13 @@ I'm used to the file structure and I especially like working with POROS
 I'll start by referencing another project that consumed an API.
 
 At this point, I've made and tested my Tea Facade, Service, and PORO
+
+<br><br>
+Now, I'm moving on to getting a single tea.
+
+I assumed the TAPI would use the Tea ID to get a single tea response, so I created a branch called `single_tea_by_id`. After reading the documentation, I found that the TAPI actually used the name/title of the tea to get a single response.
+
+I wrote a test then made the TeaService method `get_tea_by_title(title)` to call the TAPI and return a single tea based on the `title` sent in to the method.<br>
+This worked.
+
+Now I'm writing a test to make sure the TeaFacade `get_tea_by_title(title)` returns a single Tea PORO using the response from `TeaService.get_tea_by_title(title)`

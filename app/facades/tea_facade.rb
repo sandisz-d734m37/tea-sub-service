@@ -3,11 +3,16 @@ class TeaFacade
     def get_all_teas
       tea_data = TeaService.get_all_teas
       tea_data.map do |data|
-        create_teas(data)
+        create_tea(data)
       end
     end
 
-    def create_teas(data)
+    def get_tea_by_title(title)
+      tea_data = TeaService.get_tea_by_title(title)
+      create_tea(tea_data)
+    end
+
+    def create_tea(data)
       Tea.new(
         attributes: {
           id: data[:_id],

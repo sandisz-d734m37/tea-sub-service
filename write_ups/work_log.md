@@ -92,3 +92,5 @@ I'll be using the Facade/Service/PORO design pattern.<br>
 I'm used to the file structure and I especially like working with POROS
 
 I'll start by referencing another project that consumed an API.
+
+At this point, I've made and tested my Tea Facade, Service, and PORO

@@ -64,9 +64,11 @@ The first thing I'll do from here: push to GitHub, create User Stories/project b
 ```
 users GET    /users(.:format)                     users#index
       POST   /users(.:format)                     users#create
-      
+
  user GET    /users/:id(.:format)                 users#show
       PATCH  /users/:id(.:format)                 users#update
       PUT    /users/:id(.:format)                 users#update
       DELETE /users/:id(.:format)                 users#destroy
 ```
+
+Now, i'll initialize RSpec and write a test to create a user and return it via the API

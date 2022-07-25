@@ -79,3 +79,6 @@ Add the following gems:
 Bundle install (of course)
 
 Then run: `rails g rspec:install`
+
+- user validation tests
+- 

@@ -81,4 +81,14 @@ Bundle install (of course)
 Then run: `rails g rspec:install`
 
 - user validation tests
-- 
+- user creation model tests
+
+<h4> On to the tea table (actually the TAPI)</h4>
+
+Firstly, I decided to use the [TAPI](https://github.com/victoria-lo/TAPI) rather than create a table.
+This is for ease of use on my end, and to present myself with a bit of a challenge.
+
+I'll be using the Facade/Service/PORO design pattern.<br>
+I'm used to the file structure and I especially like working with POROS
+
+I'll start by referencing another project that consumed an API.

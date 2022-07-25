@@ -50,3 +50,23 @@
 
 
 The first thing I'll do from here: push to GitHub, create User Stories/project board w issues
+
+<h3> Steps: </h3>
+
+- Create user_table branch
+- Generate User resources - `rails g resource User first_name last_name email shipping_address`
+- This created:
+  - User migration
+  - Users controller
+  - User model
+  - The following routes:
+
+```
+users GET    /users(.:format)                     users#index
+      POST   /users(.:format)                     users#create
+      
+ user GET    /users/:id(.:format)                 users#show
+      PATCH  /users/:id(.:format)                 users#update
+      PUT    /users/:id(.:format)                 users#update
+      DELETE /users/:id(.:format)                 users#destroy
+```

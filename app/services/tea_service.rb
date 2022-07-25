@@ -4,5 +4,10 @@ class TeaService < BaseService
       response = conn.get("/tea")
       get_json(response)
     end
+
+    def get_tea_by_title(title)
+      response = conn.get("/tea/#{title}")
+      get_json(response)
+    end
   end
 end

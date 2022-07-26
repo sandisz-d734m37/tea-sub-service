@@ -262,3 +262,5 @@ __The time is 3:30 PM MST and I am returning to work.__
 
 Final MVP endpoint: update subscription (specifically: cancel)
  - For the sake of time, my plan is to only give this endpoint the ability to update the subscription status between `active` and `inactive`
+
+I have a little more time. I'm gonna create an endpoint specifically returning a single subscription.

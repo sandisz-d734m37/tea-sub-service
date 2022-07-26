@@ -3,8 +3,10 @@
 <hr/>
 
 <h5>Day 1 - Mon, July 25th 2022</h5>
-<h6>Start time: 1:40 PM MST</h6>
-<h6>End time (for the day): </h6>
+<h6>Start time for the day: 1:40 PM MST</h6>
+<h6>End time for the day: 6:47 PM MST</h6>
+<h6>Time elapsed today: 5 hrs </h6>
+<h6>Time elapsed thus far: 5 hrs</h6>
  After reading through the challenge, this is what I feel I'll need:
 
  - User table
@@ -97,9 +99,9 @@ I'm used to the file structure and I especially like working with POROS
 
 I'll start by referencing another project that consumed an API.
 
-At this point, I've made and tested my Tea Facade, Service, and PORO
+At this point, I've made and tested my Tea Facade, Service, and PORO, and the architectures ability to return all teas
 
-<br><br>
+<br>
 Now, I'm moving on to getting a single tea.
 
 I assumed the TAPI would use the Tea ID to get a single tea response, so I created a branch called `single_tea_by_id`. After reading the documentation, I found that the TAPI actually used the name/title of the tea to get a single response.
@@ -130,3 +132,48 @@ Wrote tests to ensure subs can be created with a user and tea associated
 
 Wrote `.tea` instance method to hit the TAPI return the Tea PORO associated with the subscription table. I want to refactor this later to cache the PORO so that I am not not hitting the TAPI every time an individual Tea PORO attribute is asked for
  - i.e. `@sub.tea.title` hits the API and goes through the entire Facade/Service/PORO architecture to return the tea PORO and it's title. So, if you do `@sub.tea.title` then `@sub.tea.description`, you go though the entire F/S/P architecture twice (once for `.title`, again for `.description`), hitting the API and creating the PORO each time.<br>
+
+<hr>
+
+At this point, I'll stop for the day<br>
+<h6>Todays end time: 6:47 PM MST</h6>
+<h6>Time elapsed thus far: 5 hrs</h6>
+
+ Recap of what's above:
+ - Generate User table and related Model, Controller, Migration, and RESTful Routes (the structure of these may be updated later to account for versioning)
+  - Put related validations and relationships in place
+  - Test User model functionality using RSpec<br><br>
+
+ - Opt to use and then set up the [TAPI](https://github.com/victoria-lo/TAPI) for all of my tea data
+  - Build out Facade/Service/PORO (F/S/P) architecture for the TAPI
+  - Test the F/S/P architecture using RSpec, WebMock, and VCR<br><br>
+
+ - Generate Subscription table and related Model, Controller, Migration, and RESTful routes (like the User stuff, this is also subject to change to account for versioning)
+  - Create enumerations for `status` and `frequency`
+  - Create `.tea` instance method in the Subscription model which takes the subs `tea_name`, traverses the F/S/P architecture, then ultimately returns the Tea PORO associated with the subscription
+
+<hr>
+
+<h5>Day 2 - Mon, July 26th 2022</h5>
+<h6>Start time for the day: 11:30 AM MST</h6>
+<h6>End time for the day: </h6>
+<h6>Time elapsed today: </h6>
+<h6>Time elapsed thus far: </h6>
+
+Today, I want to focus on endpoints. Starting with user endpoints.
+<hr>
+
+<h3>User endpoints:</h3>
+First endpoint: create user
+
+- I want to start here because I think it'll be incredibly useful and a but of a challenge.
+- What I need:
+  - User serializer
+  - User Routes
+    - Update User Controller and current routes to use namespacing
+    - This will account for versioning
+    - i.e. `POST '/api/v1/users'` rather than `POST '/users'`
+    - We'll see if we can do this with the `resources` in place as opposed to hand-rolled endpoints
+  - RSpec tests<br><br>
+
+I'll start with tests

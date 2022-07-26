@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :subscriptions
+      resources :subscriptions, only: [:index, :show, :update, :destroy]
+      resources :subscriptions, only: :create, path: "subscriptions/:user_id"
       resources :users
     end
   end

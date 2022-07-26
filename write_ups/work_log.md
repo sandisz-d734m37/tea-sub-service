@@ -196,7 +196,9 @@ I'll start with tests
   - I added the `jsonl` and `jsonapi-serializer` gems then rebundled
   - At this point, my test "passed", meaning I got a response from the request and hit my `pry`!
 - __Next steps:__ write my RSpec `expect` loops to create a legitimate test I can use over time
-  - Notable tests:
+
+
+Notable tests:
 
 ```
 parsed_response = JSON.parse(response.body, symbolize_names: true)
@@ -209,7 +211,24 @@ expect(parsed_response[:data][:attributes][:last_name]).to eq(test_user.last_nam
 expect(parsed_response[:data][:attributes][:email]).to eq(test_user.email)
 expect(parsed_response[:data][:attributes][:shipping_address]).to eq(test_user.shipping_address)
 ```
--
-  - Specific ex: `expect(parsed_response[:data][:attributes][:last_name]).to eq(test_user.last_name)`
 
-  - I wanted to show these because I like how the user that's just been created is pulled in as an object/instance named `test_user`, and that users data is directly tested against the `parsed_response`, a parsed version of the `response body` fed to us via the actual `request`.
+- Specific ex: `expect(parsed_response[:data][:attributes][:last_name]).to eq(test_user.last_name)`
+
+- I wanted to show these because I like how the user that's just been created is pulled in as an object/instance named `test_user`, and that users data is directly tested against the `parsed_response`, a parsed version of the `response body` fed to us via the actual `request`.
+
+Now, I'll move on to `GET all users` or `GET api/v1/users`
+
+- A lot of the groundwork is already set up.
+  - Namespaced routes
+  - Namespaced controller
+  - UserSerializer
+  - Test suite
+
+- With this in mind, I'll start by creating 2 users in my test suite to ensure this request will respond with multiple pieces of data
+- Same as before, write skeleton and end with `pry` before making expect blocks
+
+- First failure: `The action 'index' could not be found for Api::V1::UsersController`
+  - To solve this, all I have to do is create the `index` action
+  - And with that, the test passes and I'm done!
+
+From here forward, it's lots of repeating the same steps so my work log will become a bit lighter and mainly be used as a time tracking tool.

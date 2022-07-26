@@ -46,7 +46,7 @@ RSpec.describe "User endpoints" do
         shipping_address: "321 Fake ave., Somehere, SO 32123"
       )
     end
-    
+
     it "can get all users" do
       headers = {"CONTENT_TYPE" => "application/json"}
       get "/api/v1/users", headers: headers
@@ -68,6 +68,52 @@ RSpec.describe "User endpoints" do
       expect(parsed_data[1][:attributes][:email]).to eq(@user_2.email)
       expect(parsed_data[0][:attributes][:shipping_address]).to eq(@user_1.shipping_address)
       expect(parsed_data[1][:attributes][:shipping_address]).to eq(@user_2.shipping_address)
+    end
+
+    it "can get a single user and their subscriptions" do
+      u1_sub1 = @user_1.subscriptions.create!(
+        title: "User 1 Test Subscription 1",
+        price: 10.0,
+        status: 1,
+        frequency: 1,
+        tea_name: "green"
+      )
+      u1_sub2 = @user_1.subscriptions.create!(
+        title: "User 1 Test Subscription 2",
+        price: 20.0,
+        status: 0,
+        frequency: 1,
+        tea_name: "black"
+      )
+      u2_sub1 = @user_2.subscriptions.create!(
+        title: "User 2 Test Subscription 1",
+        price: 20.0,
+        status: 0,
+        frequency: 1,
+        tea_name: "black"
+      )
+
+      headers = {"CONTENT_TYPE" => "application/json"}
+      get "/api/v1/users/#{@user_1.id}", headers: headers
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      parsed_data = parsed_response[:data]
+
+      expect(parsed_data).to be_a(Hash)
+      expect(parsed_data[:type]).to eq("user")
+      expect(parsed_data[:attributes][:first_name]).to eq(@user_1.first_name)
+      expect(parsed_data[:attributes][:last_name]).to eq(@user_1.last_name)
+      expect(parsed_data[:attributes][:email]).to eq(@user_1.email)
+      expect(parsed_data[:attributes][:shipping_address]).to eq(@user_1.shipping_address)
+
+      expect(parsed_data[:attributes]).to have_key(:subscriptions)
+      expect(parsed_data[:attributes][:subscriptions]).to be_an(Array)
+      expect(parsed_data[:attributes][:subscriptions].length).to eq(2)
+      expect(parsed_data[:attributes][:subscriptions][0][:title]).to eq(u1_sub1.title)
+      expect(parsed_data[:attributes][:subscriptions][1][:title]).to eq(u1_sub2.title)
     end
   end
 end

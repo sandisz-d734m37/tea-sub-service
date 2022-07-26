@@ -232,3 +232,10 @@ Now, I'll move on to `GET all users` or `GET api/v1/users`
   - And with that, the test passes and I'm done!
 
 From here forward, it's lots of repeating the same steps so my work log will become a bit lighter and mainly be used as a time tracking tool.
+
+- Learned something new:
+  - With the `jsonapi-serializer` gem, you can use the built-in method `.new` to automatically render your response.
+  - I wanted to add users subscriptions to the response without hard coding a response.
+  - I found out you can add any attribute associated with the object being sent to the `attributes` section in the serializer
+  - So, I added `:subscriptions`, making the attributes look like this: `attributes :first_name, :last_name, :email, :shipping_address, :subscriptions`
+  - This allowed the `jsonapi-serializer` gem to auto-render a response which includes the users subscriptions!

@@ -159,9 +159,9 @@ At this point, I'll stop for the day<br>
 <h6>Start of break time: 2:00 PM MST</h6>
 <h6>End of break time: 3:30 PM MST</h6>
 <h6>Break time elapsed: 1.5 hrs </h6>
-<h6>End time for the day: </h6>
-<h6>Time elapsed today (minus break time): </h6>
-<h6>Time elapsed thus far: </h6>
+<h6>End time for the day: 4:00 PM MST </h6>
+<h6>Time elapsed today (minus break time): 3 hrs </h6>
+<h6>Time elapsed thus far: 8 hrs </h6>
 
 Today, I want to focus on endpoints. Starting with user endpoints.
 <hr>
@@ -264,3 +264,13 @@ Final MVP endpoint: update subscription (specifically: cancel)
  - For the sake of time, my plan is to only give this endpoint the ability to update the subscription status between `active` and `inactive`
 
 I have a little more time. I'm gonna create an endpoint specifically returning a single subscription.
+
+<hr>
+
+<h3>The time is now 4:00 PM. I've elapsed my 8 hr time frame. This is what is complete:</h3>
+
+- `POST` User creation endpoint
+- `GET` all Users and their Subscriptions, a single User and their Subscriptions
+- `POST` Subscription creation endpoint
+- `PATCH` Subscription update endpoint (tested to deactive/reactive a Users Subscription)
+- `GET` a single Subscription and the User associated with it

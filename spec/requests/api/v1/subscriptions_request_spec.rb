@@ -82,6 +82,23 @@ RSpec.describe "Subscriptions", type: :request do
       expect(parsed_data[:type]).to eq("subscription")
       expect(parsed_data[:attributes][:status]).to eq("inactive")
       expect(parsed_data[:attributes][:user][:id]).to eq(@user_1.id)
+
+      sub_params = {
+        status: 1
+      }
+
+      headers = {"CONTENT_TYPE" => "application/json"}
+      patch "/api/v1/subscriptions/#{u1_sub1.id}", headers: headers, params: JSON.generate(subscription: sub_params)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(201)
+
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      parsed_data = parsed_response[:data]
+      updated_sub = Subscription.find(u1_sub1.id)
+
+      expect(updated_sub.status).to eq("active")
+      expect(parsed_data[:attributes][:status]).to eq("active")
     end
   end
 end

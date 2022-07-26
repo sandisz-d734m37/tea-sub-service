@@ -157,8 +157,8 @@ At this point, I'll stop for the day<br>
 <h5>Day 2 - Mon, July 26th 2022</h5>
 <h6>Start time for the day: 11:30 AM MST</h6>
 <h6>Start of break time: 2:00 PM MST</h6>
-<h6>End of break time: </h6>
-<h6>Break time elapsed: </h6>
+<h6>End of break time: 3:30 PM MST</h6>
+<h6>Break time elapsed: 1.5 hrs </h6>
 <h6>End time for the day: </h6>
 <h6>Time elapsed today (minus break time): </h6>
 <h6>Time elapsed thus far: </h6>
@@ -256,4 +256,9 @@ __The time is 2:00 PM MST and I need to step away for a prior engangement.__
 
 I'm adding this note and some other things above (break time start, break time end, break time elapsed) to track the time I'm actually working on the project, as opposed to time spent since the start of the project.
 
+__The time is 3:30 PM MST and I am returning to work.__
+
 <hr>
+
+Final MVP endpoint: update subscription (specifically: cancel)
+ - For the sake of time, my plan is to only give this endpoint the ability to update the subscription status between `active` and `inactive`

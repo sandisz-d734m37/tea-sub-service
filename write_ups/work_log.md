@@ -177,3 +177,39 @@ First endpoint: create user
   - RSpec tests<br><br>
 
 I'll start with tests
+
+- Referenced Gear Up BE (an old app of mine) to see how request tests were written
+- Wrote test skeleton, then instead of expect loops, I finished it with a `binding.pry` so I can see what's being returned assuming the post request comes through.<br><br>
+
+- Fist failure: `No route matches [POST] "/api/v1/users"`
+  - Fixed this by namespacing in the routes
+  - Was able to use resources with a `namespace :api do...` block in my routes file
+- Second failure essentially said to namespace the Controller
+  - I did this by updating the file structure in the controllers directory, then updating the controller itself
+  - Filepath becomes: `app/controllers/api/v1/users_controller.rb`
+  - Controller class name becomes: `Api::V1::UsersController`
+- Third failure: `The action 'create' could not be found for Api::V1::UsersController`
+  - I set up this method and told it to `render json: UserSerializer.new(user), status: :created`
+- Fourth failure: `uninitialized constant Api::V1::UsersController::UserSerializer`
+  - I created `app/serializers/user_serializer`, but didn't realize I was missing the `jsonl` and `jsonapi-serializer` gems, leading to my fifth failure...
+- Fifth failure: `uninitialized constant UserSerializer::JSONAPI`
+  - I added the `jsonl` and `jsonapi-serializer` gems then rebundled
+  - At this point, my test "passed", meaning I got a response from the request and hit my `pry`!
+- __Next steps:__ write my RSpec `expect` loops to create a legitimate test I can use over time
+  - Notable tests:
+
+```
+parsed_response = JSON.parse(response.body, symbolize_names: true)
+test_user = User.last
+
+expect(parsed_response[:data][:attributes][:first_name]).to eq("User 1")
+expect(test_user.first_name).to eq("User 1")
+
+expect(parsed_response[:data][:attributes][:last_name]).to eq(test_user.last_name)
+expect(parsed_response[:data][:attributes][:email]).to eq(test_user.email)
+expect(parsed_response[:data][:attributes][:shipping_address]).to eq(test_user.shipping_address)
+```
+-
+  - Specific ex: `expect(parsed_response[:data][:attributes][:last_name]).to eq(test_user.last_name)`
+
+  - I wanted to show these because I like how the user that's just been created is pulled in as an object/instance named `test_user`, and that users data is directly tested against the `parsed_response`, a parsed version of the `response body` fed to us via the actual `request`.

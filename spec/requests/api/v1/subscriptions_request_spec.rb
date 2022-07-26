@@ -1,6 +1,53 @@
 require 'rails_helper'
 
 RSpec.describe "Subscriptions", type: :request do
+  describe "get a single subscription" do
+    before do
+      @user_1 = User.create!(
+        first_name: "User 1",
+        last_name: "test",
+        email: "user1@test.com",
+        shipping_address: "123 Test st., Nowhere, NO 12321"
+      )
+      @u1_sub1 = @user_1.subscriptions.create!(
+        title: "User 1 Test Subscription 1",
+        price: 10.0,
+        status: 1,
+        frequency: 1,
+        tea_name: "green"
+      )
+      @u1_sub2 = @user_1.subscriptions.create!(
+        title: "User 1 Test Subscription 2",
+        price: 20.0,
+        status: 0,
+        frequency: 1,
+        tea_name: "black"
+      )
+    end
+
+    it "can return a single sub by the subs ID" do
+      headers = {"CONTENT_TYPE" => "application/json"}
+      get "/api/v1/subscriptions/#{@u1_sub1.id}", headers: headers
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      parsed_data = parsed_response[:data]
+
+      expect(parsed_data).to be_a(Hash)
+      expect(parsed_data[:type]).to eq("subscription")
+      expect(parsed_data[:attributes][:title]).to eq(@u1_sub1.title)
+      expect(parsed_data[:attributes][:price]).to eq(@u1_sub1.price)
+      expect(parsed_data[:attributes][:status]).to eq(@u1_sub1.status)
+      expect(parsed_data[:attributes][:frequency]).to eq(@u1_sub1.frequency)
+      expect(parsed_data[:attributes][:tea_name]).to eq(@u1_sub1.tea_name)
+
+      expect(parsed_data[:attributes]).to have_key(:user)
+      expect(parsed_data[:attributes][:user][:id]).to eq(@user_1.id)
+    end
+  end
+  
   describe "Create/update subscription" do
     before do
       @user_1 = User.create!(

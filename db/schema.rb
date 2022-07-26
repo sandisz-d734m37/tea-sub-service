@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_25_203113) do
+ActiveRecord::Schema.define(version: 2022_07_25_233343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "title"
+    t.float "price"
+    t.integer "status"
+    t.integer "frequency"
+    t.string "tea_name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -24,4 +36,5 @@ ActiveRecord::Schema.define(version: 2022_07_25_203113) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "subscriptions", "users"
 end

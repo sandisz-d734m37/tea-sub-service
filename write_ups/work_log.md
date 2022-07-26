@@ -156,8 +156,11 @@ At this point, I'll stop for the day<br>
 
 <h5>Day 2 - Mon, July 26th 2022</h5>
 <h6>Start time for the day: 11:30 AM MST</h6>
+<h6>Start of break time: 2:00 PM MST</h6>
+<h6>End of break time: </h6>
+<h6>Break time elapsed: </h6>
 <h6>End time for the day: </h6>
-<h6>Time elapsed today: </h6>
+<h6>Time elapsed today (minus break time): </h6>
 <h6>Time elapsed thus far: </h6>
 
 Today, I want to focus on endpoints. Starting with user endpoints.
@@ -239,3 +242,5 @@ From here forward, it's lots of repeating the same steps so my work log will bec
   - I found out you can add any attribute associated with the object being sent to the `attributes` section in the serializer
   - So, I added `:subscriptions`, making the attributes look like this: `attributes :first_name, :last_name, :email, :shipping_address, :subscriptions`
   - This allowed the `jsonapi-serializer` gem to auto-render a response which includes the users subscriptions!
+
+The time is 2:00 PM MST and I need to step away for a prior engangement. I'm adding this note and some other things above (break time start, break time end, break time elapsed) to track the time I'm actually working on the project, as opposed to time spent since the start of the project.

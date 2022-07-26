@@ -243,4 +243,17 @@ From here forward, it's lots of repeating the same steps so my work log will bec
   - So, I added `:subscriptions`, making the attributes look like this: `attributes :first_name, :last_name, :email, :shipping_address, :subscriptions`
   - This allowed the `jsonapi-serializer` gem to auto-render a response which includes the users subscriptions!
 
-The time is 2:00 PM MST and I need to step away for a prior engangement. I'm adding this note and some other things above (break time start, break time end, break time elapsed) to track the time I'm actually working on the project, as opposed to time spent since the start of the project.
+<h3>Subscription endpoints:</h3>
+
+- Made the `POST` endpoint to create a subscription.
+  - The URI: `POST /api/v1/subscriptions/:user_id`
+  - I added `:user_id` so that the `create` action can find the user prior to creating the subscription.
+  - This mitigates the risk of creating a subscription with an invalid user ID
+
+<hr>
+
+__The time is 2:00 PM MST and I need to step away for a prior engangement.__
+
+I'm adding this note and some other things above (break time start, break time end, break time elapsed) to track the time I'm actually working on the project, as opposed to time spent since the start of the project.
+
+<hr>

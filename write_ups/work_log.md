@@ -125,3 +125,8 @@ Some notes on the step above:
   - `2 => monthly`<br><br>
 - `tea_name` will tap the TAPI to return the tea associated with the subscription<br><br>
 - `user:references` sets the user as a foreign key<br><br>
+
+Wrote tests to ensure subs can be created with a user and tea associated
+
+Wrote `.tea` instance method to hit the TAPI return the Tea PORO associated with the subscription table. I want to refactor this later to cache the PORO so that I am not not hitting the TAPI every time an individual Tea PORO attribute is asked for
+ - i.e. `@sub.tea.title` hits the API and goes through the entire Facade/Service/PORO architecture to return the tea PORO and it's title. So, if you do `@sub.tea.title` then `@sub.tea.description`, you go though the entire F/S/P architecture twice (once for `.title`, again for `.description`), hitting the API and creating the PORO each time.<br>

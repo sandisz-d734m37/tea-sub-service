@@ -13,4 +13,8 @@ class Subscription < ApplicationRecord
     "bi-weekly" => 1,
     "monthly" => 2
   }
+
+  def tea
+    TeaFacade.get_tea_by_title(tea_name)
+  end
 end

@@ -41,5 +41,14 @@ RSpec.describe Subscription, type: :model do
       expect(@sub_1.frequency).to eq("bi-weekly")
       expect(@sub_1.tea_name).to eq("chamomile")
     end
+
+    it "can return the Tea PORO related to the subscription", :vcr do
+      expect(@sub_1.tea).to be_a(Tea)
+      expect(@sub_1.tea.title).to eq("chamomile")
+      expect(@sub_1.tea.id).to eq("5fa3fe47d5ba620017ec1c0b")
+      expect(@sub_1.tea.description).to eq("Lowers blood sugar and prevents osteoporosis.")
+      expect(@sub_1.tea.brew_time).to eq(3)
+      expect(@sub_1.tea.temperature).to eq(93)
+    end
   end
 end

@@ -28,16 +28,16 @@ $ rails s
 6. Open your browser, postman, or similar and test out the endpoints!
 
 Endpoints:
-| Tables   |      Are      |  Cool |
-|----------|:-------------:|------:|
-| col 1 is |  left-aligned | $1600 |
-| col 2 is |    centered   |   $12 |
-| col 3 is | right-aligned |    $1 |
-Create a subscription for a customer to a tea
-http://localhost:3000/api/v1/customers/[insert customer id]/subscriptions
-Update a subscription
-http://localhost:3000/api/v1/subscriptions/[insert subscription id]
-* When sending a patch request, a body needs to be sent in JSON format with the attributes you wish to update, e.g:
+| Action                                              | Type  | Endpoint                                              |
+|-----------------------------------------------------|-------|-------------------------------------------------------|
+| Create a User⭑                                      | POST  | localhost:3000/api/v1/users                           |
+| Get all Users (and their Subscriptions)             | GET   | localhost:3000/api/v1/users                           |
+| Get a Single User (and their Subscriptions)         | GET   | localhost:3000/api/v1/users/[USER ID]                 |
+| Create a Subscription⭑                              | POST  | localhost:3000/api/v1/subscriptions/[USER ID]         |
+| Update a Subscription⭑                              | PATCH | localhost:3000/api/v1/subscriptions/[SUBSCRIPTION ID] |
+| Get a Single Subscription (and the associated User) | GET   | localhost:3000/api/v1/subscriptions/[SUBSCRIPTION ID] |
+
+* ⭑ When sending a patch request, a body needs to be sent in JSON format with the attributes you wish to update, e.g:
 {
     "status": "Cancelled"
    }

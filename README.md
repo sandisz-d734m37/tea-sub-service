@@ -1,6 +1,6 @@
 # Welcome to the Tea Sub Service!
 
-Tea Sub Service is an API that consumed the TAPI, which allows users to create subscriptions to specific teas.
+The Tea Sub Service is an API that consumed the TAPI, which allows users to create subscriptions to specific teas.
 <hr>
 
 ### Before you get started:
@@ -28,7 +28,7 @@ $ rails s
 ```
 6. Open your browser, postman, or similar and test out the endpoints!
 
-#### NOTE: There is nothing in your database at this point. Use the endpoints below to create some user and subscriptions!
+#### NOTE: There is nothing in your database at this point. Use the endpoints below to create some users and subscriptions!
 <hr>
 
 ### Endpoints:
@@ -91,3 +91,4 @@ $ bundle exec rspec
 ```
 open coverage/index.html
 ```
+- If you'd like to learn about my process, check out my [work_log](https://github.com/sandisz-d734m37/tea-sub-service/blob/main/write_ups/work_log.md)
